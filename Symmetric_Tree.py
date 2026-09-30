@@ -43,4 +43,28 @@ class Solution:
         if left.val != right.val:
             return False
         return self.helper(left.left, right.right) and self.helper(left.right, right.left)
+#Recursion
+
+from collections import deque
+class Solution:
+    def isSymmetric(self, root: TreeNode | None) -> bool:
+        if root is None:
+            return True
+        queue = deque([root.left, root.right])
+        while queue:
+            left = queue.popleft()
+            right = queue.popleft()
+            if left is None and right is None:
+                continue
+            if left is None or right is None or left.val != right.val:
+                return False
+            queue.append(left.left)
+            queue.append(right.right)
+            queue.append(left.right)
+            queue.append(right.left)
+        return True
+#BFS
+                
+                
+
         
