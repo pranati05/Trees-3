@@ -50,18 +50,15 @@ class Solution:
     def isSymmetric(self, root: TreeNode | None) -> bool:
         if root is None:
             return True
-        queue = deque([root.left, root.right])
+        queue = deque([(root.left, root.right)])
         while queue:
-            left = queue.popleft()
-            right = queue.popleft()
+            left, right = queue.popleft()
             if left is None and right is None:
                 continue
             if left is None or right is None or left.val != right.val:
                 return False
-            queue.append(left.left)
-            queue.append(right.right)
-            queue.append(left.right)
-            queue.append(right.left)
+            queue.append((left.left, right.right))
+            queue.append((left.right, right.left))
         return True
 #BFS
                 
